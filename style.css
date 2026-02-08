@@ -1,1 +1,223 @@
-/* Add your CSS here */
+/* Basic reset */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* Color palette and easy theme tweaks */
+:root {
+	--intel-blue: #1f4d7a;
+	--intel-dark: #0b1b2b;
+	--intel-glow: #9bd7ff;
+	--card-bg: #0f2238;
+	--card-border: #3d79b3;
+}
+
+body {
+	font-family: "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
+	color: #0b1b2b;
+	line-height: 1.6;
+
+	/* Remove the background image */
+	background-image: none;
+
+	/* Keep a simple default background behavior */
+	background-size: auto;
+	background-repeat: repeat;
+	background-position: center;
+	background-attachment: scroll;
+
+	/* Futuristic circuit-style pattern (light blue) */
+	background-image:
+		linear-gradient(90deg, rgba(155, 215, 255, 0.25) 2px, transparent 2px),
+		linear-gradient(180deg, rgba(155, 215, 255, 0.18) 2px, transparent 2px),
+		radial-gradient(circle at 20px 20px, rgba(155, 215, 255, 0.35) 2px, transparent 3px),
+		radial-gradient(circle at 50px 50px, rgba(155, 215, 255, 0.25) 2px, transparent 3px),
+		linear-gradient(0deg, rgba(31, 77, 122, 0.08), rgba(31, 77, 122, 0.08));
+
+	/* Simple tile sizes for the circuit look */
+	background-size: 60px 60px, 60px 60px, 60px 60px, 60px 60px, 100% 100%;
+
+	/* Starting positions */
+	background-position: 0 0, 0 0, 0 0, 30px 30px, center;
+
+	/* Keep it subtle and light */
+	background-color: #e6f3ff;
+
+	/* Slow, gentle movement for a dynamic feel */
+	animation: bg-shift 12s ease-in-out infinite;
+}
+
+/* Small Intel logo header */
+.intel-bar {
+	background: var(--intel-blue);
+	text-align: center;
+	padding: 12px 10px;
+}
+
+.intel-bar img {
+	width: 90px;
+	height: auto;
+}
+
+/* Header / hero area */
+header {
+	text-align: center;
+	padding: 48px 20px 56px;
+
+	/* Match the Intel bar for a unified blue header */
+	background: var(--intel-blue);
+	color: #e9f6ff;
+	border-bottom: 2px solid rgba(155, 215, 255, 0.35);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+	/* Remove the hero background image so it only shows on the body */
+	background-image: none;
+}
+
+header div {
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+header h1 {
+	font-size: 2.4rem;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+	text-shadow: 0 0 10px rgba(138, 172, 197, 0.747);
+}
+
+header p {
+	font-size: 1.05rem;
+	color: #d9f0ff;
+}
+
+/* Timeline section layout */
+section {
+	/* Fit three cards and gaps in one row */
+	max-width: 860px;
+	width: 100%;
+	margin: 36px auto 24px;
+	padding: 0 20px;
+	display: flex;
+	/* Keep cards in one row */
+	flex-wrap: nowrap;
+	/* Space between cards */
+	gap: 20px;
+	/* Start from the first card on the left */
+	justify-content: flex-start;
+	/* Keep snap aligned with the left padding */
+	scroll-padding-left: 20px;
+	/* Allow horizontal scrolling for more cards */
+	overflow-x: auto;
+	/* Snap cards when scrolling */
+	scroll-snap-type: x mandatory;
+}
+
+/* Individual timeline cards */
+section div {
+	background: var(--card-bg);
+	border: 2px solid var(--card-border);
+	border-radius: 12px;
+	padding: 14px 14px 12px;
+	/* Each card width so 3 fit across */
+	flex: 0 0 260px;
+	box-shadow: 0 0 16px rgba(49, 129, 153, 0.35);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	position: relative;
+	scroll-snap-align: start;
+
+	/* Light blue square pattern on each card */
+	background-image:
+		linear-gradient(90deg, rgba(155, 215, 255, 0.15) 1px, transparent 1px),
+		linear-gradient(180deg, rgba(155, 215, 255, 0.15) 1px, transparent 1px);
+
+	/* Size of the squares */
+	background-size: 16px 16px;
+}
+
+section div:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 0 26px rgba(155, 215, 255, 0.55);
+
+	/* Darken the squares on hover */
+	background-image:
+		linear-gradient(90deg, rgba(11, 27, 43, 0.6) 1px, transparent 1px),
+		linear-gradient(180deg, rgba(11, 27, 43, 0.6) 1px, transparent 1px);
+}
+
+section h2 {
+	/* Make the year text feel more cursive */
+	font-family: "Brush Script MT", "Lucida Handwriting", "Segoe Script", cursive;
+	font-size: 1.6rem;
+	color: var(--intel-glow);
+	margin-bottom: 4px;
+}
+
+section h3 {
+	font-size: 1.05rem;
+	color: #e9f6ff;
+	margin-bottom: 12px;
+}
+
+/* Card images */
+section img {
+	width: 100%;
+	height: 140px;
+	object-fit: cover;
+	border-radius: 8px;
+	margin-bottom: 12px;
+	border: 1px solid rgba(155, 215, 255, 0.35);
+}
+
+/* Description is hidden until hover */
+section p {
+	font-size: 0.95rem;
+	color: #cfe9ff;
+	max-height: 0;
+	opacity: 0;
+	overflow: hidden;
+	transform: translateY(6px);
+	transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+/* On hover, show description */
+section div:hover p {
+	max-height: 120px;
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Footer hint text */
+body > p {
+	text-align: center;
+	font-size: 0.95rem;
+	color: #2b4a6b;
+	margin: 20px 0 40px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+	header h1 {
+		font-size: 2rem;
+	}
+
+	section div {
+		flex: 0 0 100%;
+	}
+}
+
+/* Simple background animation */
+@keyframes bg-shift {
+	0% {
+		background-position: 0 0, 0 0, 0 0, 30px 30px, center;
+	}
+	50% {
+		background-position: 10px 10px, 5px 15px, 5px 5px, 35px 35px, center;
+	}
+	100% {
+		background-position: 0 0, 0 0, 0 0, 30px 30px, center;
+	}
+}
