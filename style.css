@@ -96,8 +96,8 @@ header p {
 
 /* Timeline section layout */
 section {
-	/* Fit three cards and gaps in one row */
-	max-width: 860px;
+	/* Fit three smaller cards and gaps in one row */
+	max-width: 900px;
 	width: 100%;
 	margin: 36px auto 24px;
 	padding: 0 20px;
@@ -122,8 +122,8 @@ section div {
 	border: 2px solid var(--card-border);
 	border-radius: 12px;
 	padding: 14px 14px 12px;
-	/* Each card width so 3 fit across */
-	flex: 0 0 260px;
+	/* Smaller card width */
+	flex: 0 0 280px;
 	box-shadow: 0 0 16px rgba(49, 129, 153, 0.35);
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
 	position: relative;
@@ -163,13 +163,40 @@ section h3 {
 }
 
 /* Card images */
-section img {
-	width: 100%;
-	height: 140px;
-	object-fit: cover;
-	border-radius: 8px;
+/* Card images */
+.card-image {
+	position: relative;
 	margin-bottom: 12px;
+}
+
+.card-photo {
+	/* Show the full image without cropping */
+	max-width: 100%;
+	width: 100%;
+	height: auto;
+	object-fit: contain;
+	border-radius: 8px;
 	border: 1px solid rgba(155, 215, 255, 0.35);
+	opacity: 0;
+	transition: opacity 0.35s ease;
+}
+
+.card-logo {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	width: 48px;
+	height: auto;
+	padding: 4px 6px;
+	background: rgba(11, 27, 43, 0.6);
+	border-radius: 6px;
+	opacity: 1;
+	transition: opacity 0.35s ease;
+}
+
+/* Show the image when the card is hovered */
+section div:hover .card-image .card-photo {
+	opacity: 1;
 }
 
 /* Description is hidden until hover */
@@ -202,6 +229,11 @@ body > p {
 @media (max-width: 700px) {
 	header h1 {
 		font-size: 2rem;
+	}
+
+	section {
+		flex-direction: column;
+		overflow-x: visible;
 	}
 
 	section div {
